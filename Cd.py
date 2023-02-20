@@ -2,13 +2,14 @@ from manim import *
 
 class RotatingCanvas(Scene):
     def construct(self):
-        group = Title("Group 5", match_underline_width_to_text= True)
+        group = Title("Group 5", match_underline_width_to_text= True).shift(UP*0.4)
         self.add(group)
         our_plane = Axes(x_range = [-3,3], y_range=[-3,3], x_length = 6, y_length=6).scale(0.5)
         #self.add(axes)
         #numberplane = NumberPlane(x_range= [-5,5,0.25], y_range= [-5,5,0.25], x_length= 10, y_length= 10)
         numberplane = NumberPlane(x_range = [-5,5,0.25], y_range=[-3,3,0.25], x_length = 6, y_length=6, tips=False).scale(0.5)
-
+        cd = Circle(radius= 3.5, color= BLUE, fill_opacity= 0.5)
+        self.add(cd)
         t=0
 
         dot = Dot(point= our_plane.c2p(t,0))
@@ -38,6 +39,11 @@ class RotatingCanvas(Scene):
                     Create(point_),
                     Rotate(
                         dots_group,
+                        angle= -PI/30,
+                        about_point=ORIGIN,
+                    ),
+                    Rotate(
+                        cd,
                         angle= -PI/30,
                         about_point=ORIGIN,
                     ),
